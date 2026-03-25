@@ -3,29 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A premium, glassmorphism-inspired to-do application for modern task management.">
-    <meta name="keywords" content="todo, tasks, productivity, glassmorphism, aesthetic">
-    <title>Aesthetic | Premium To-Do</title>
+    <meta name="description" content="A premium, frontend-only to-do application for elite productivity.">
+    <title>Aesthetic | Elite To-Do</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="background-blobs">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
     </div>
     
-    <main class="app-container">
+    <main class="app-container glass">
         <header>
-            <h1>My Tasks</h1>
-            <p id="date-display">Today</p>
+            <div class="header-content">
+                <p id="date-display">Wednesday, March 25</p>
+                <h1>My Focus</h1>
+            </div>
+            <div class="header-actions">
+                <!-- Logout button injected by script -->
+            </div>
         </header>
+
+        <!-- Dashboard Stats -->
+        <section class="dashboard-stats">
+            <div class="stat-item">
+                <span class="stat-value" id="stat-total">0</span>
+                <span class="stat-label">Total</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-value" id="stat-completed">0</span>
+                <span class="stat-label">Done</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-value" id="stat-productivity">0%</span>
+                <span class="stat-label">Efficiency</span>
+            </div>
+        </section>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-info">
+                <span>Overall Progress</span>
+                <span id="progress-percent">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-bar"></div>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <div class="search-group">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-input" placeholder="Search focus points..." autocomplete="off">
+            </div>
+            <button id="theme-toggle" class="toolbar-btn" title="Toggle Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button id="voice-btn" class="toolbar-btn" title="Voice Command">
+                <i class="fas fa-microphone"></i>
+            </button>
+            <button id="about-btn" class="toolbar-btn" title="About">
+                <i class="fas fa-info-circle"></i>
+            </button>
+        </div>
 
         <form id="todo-form">
             <div class="input-group">
-                <input type="text" id="todo-input" placeholder="What needs to be done?" autocomplete="off">
+                <div class="input-wrapper">
+                    <input type="text" id="todo-input" placeholder="Create a new focus point..." autocomplete="off">
+                    <div class="input-controls">
+                        <select id="priority-select" title="Priority">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Med</option>
+                            <option value="high">High</option>
+                        </select>
+                        <select id="category-select" title="Category">
+                            <option value="general" selected>General</option>
+                            <option value="work">Work</option>
+                            <option value="personal">Personal</option>
+                            <option value="shopping">Shop</option>
+                        </select>
+                        <input type="date" id="due-date" title="Due Date">
+                    </div>
+                </div>
                 <button type="submit" id="add-btn">
                     <i class="fas fa-plus"></i>
                 </button>
@@ -33,21 +97,39 @@
         </form>
 
         <div class="filters">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="active">Active</button>
-            <button class="filter-btn" data-filter="completed">Completed</button>
+            <button class="filter-btn active" data-filter="all">Total Focus</button>
+            <button class="filter-btn" data-filter="active">In Progress</button>
+            <button class="filter-btn" data-filter="completed">Accomplished</button>
         </div>
 
         <ul class="todo-list" id="todo-list">
-            <!-- Tasks will be injected here -->
+            <!-- Focus points injected here -->
         </ul>
 
         <div class="app-footer">
-            <span id="items-left">0 items left</span>
-            <button id="clear-completed">Clear Completed</button>
+            <span id="items-left">0 items remain</span>
+            <button id="clear-completed" class="header-btn" style="font-size: 0.85rem;">Purge Completed</button>
         </div>
     </main>
 
     <script src="script.js"></script>
+
+    <!-- About Modal -->
+    <div id="about-modal" class="modal">
+        <div class="modal-content glass">
+            <span class="close-modal">&times;</span>
+            <h2 style="margin-bottom: 1rem;">Elite To-Do</h2>
+            <p style="color: var(--text-muted); line-height: 1.6;">A professional-grade productivity engine. This application operates entirely on your device, ensuring maximum privacy and zero latency.</p>
+            <ul class="tech-stack">
+                <li><i class="fas fa-shield-alt"></i> Local Persistence</li>
+                <li><i class="fas fa-bolt"></i> Zero Dependency</li>
+                <li><i class="fas fa-fingerprint"></i> Private & Secure</li>
+                <li><i class="fas fa-tachometer-alt"></i> High Performance</li>
+            </ul>
+            <div class="modal-footer">
+                <p>Designed with ❤️ by Antigravity</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

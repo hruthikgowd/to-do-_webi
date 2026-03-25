@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Started | Aesthetic To-Do</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .auth-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 2.5rem;
+            border-radius: 24px;
+            text-align: center;
+        }
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .auth-form h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .auth-form p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            text-align: left;
+        }
+        .form-group label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .form-group input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 1rem;
+            border-radius: 12px;
+            color: var(--text-main);
+            outline: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .form-group input:focus {
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .auth-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        .auth-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px rgba(99, 102, 241, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+    
+    <div class="auth-container glass">
+        <form class="auth-form" id="setup-form">
+            <h1>Create Your Profile</h1>
+            <p>Your data stays on your device.</p>
+            
+            <div class="form-group">
+                <label for="username">Display Name</label>
+                <input type="text" id="username" required placeholder="How should we call you?" autocomplete="off">
+            </div>
+            
+            <button type="submit" class="auth-btn">Start Management</button>
+        </form>
+    </div>
+
+    <script>
+        const setupForm = document.getElementById('setup-form');
+        
+        // If already logged in, redirect
+        if (localStorage.getItem('user')) {
+            window.location.href = 'index.html';
+        }
+
+        setupForm.onsubmit = (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            if (username) {
+                const user = {
+                    username: username,
+                    role: 'user',
+                    joinedAt: new Date().toISOString()
+                };
+                localStorage.setItem('user', JSON.stringify(user));
+                localStorage.setItem('token', 'local-token-' + Date.now()); // Maintain compatibility
+                window.location.href = 'index.html';
+            }
+        };
+    </script>
+</body>
+</html>
