@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize
     updateDate();
     renderTodos();
+    input.focus();
+    console.log("%c✨ Aesthetic To-Do Initialized!", "color: #6366f1; font-weight: bold; font-size: 1.2rem;");
 
     // Event Listeners
     form.addEventListener('submit', addTodo);
@@ -54,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             saveTodos();
             renderTodos();
             input.value = '';
+            input.focus();
         }
     }
 

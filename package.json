@@ -1,0 +1,17 @@
+{
+  "name": "aesthetic-todo",
+  "version": "1.0.0",
+  "description": "A premium, glassmorphism-inspired to-do application.",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve ."
+  },
+  "keywords": [
+    "todo",
+    "aesthetic",
+    "glassmorphism",
+    "vercel"
+  ],
+  "author": "Antigravity",
+  "license": "MIT"
+}
